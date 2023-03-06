@@ -1,38 +1,32 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Document {
+    public static void loadDocument(String name, Scanner scan) {
+        Scanner scanner = new Scanner(System.in);
+        String line = "";
+        List<String> list = new ArrayList<>();
 
-    public static void loadDocument(String name) {
-        try (Scanner scan = new Scanner(new File(name))) {
-            while (scan.hasNext()) {
-                String line = scan.nextLine();
-                Scanner laneScan = new Scanner(line);
-                while (laneScan.hasNext()) {
-                    String word = laneScan.next();
+        while (!line.equals("eod")) {
+            line = scanner.nextLine();
 
-                    if (correctLink(word.toLowerCase())) {
-                        String word2 = word.toLowerCase().substring(5);
-                        System.out.println(word2);
-                    }
+            String[] words = line.split("\\s+");
+            for (String word : words) {
+                if (correctLink(word.toLowerCase())) {
+                    list.add(word.substring(5).toLowerCase());
+                    //System.out.println(word.substring(5).toLowerCase());
                 }
             }
-        } catch (FileNotFoundException f) {
-            f.printStackTrace();
         }
 
+        for (String s : list) {
+            System.out.println(s);
+        }
     }
 
+
     public static boolean correctLink(String link) {
-        if (link.length() >= 6) {
-            String word = link.substring(0, 5);
-            if (word.equals("link=")) {
-                String[] letter = link.split("");
-                char c = letter[5].charAt(0);
-                return Character.isLetter(c);
-            }
-        }
-        return false;
+        return link.matches("link=[a-zA-Z][a-zA-Z0-9_]*");
     }
 }

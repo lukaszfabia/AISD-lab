@@ -15,7 +15,7 @@ public class Drawer {
         }
     }
 
-    public static void drawChristmasTree(int n) {
+    public static void drawChristmassTree(int n) {
         for (int i = 1; i <= n; i++) {
             for (int j = 1; j <=i; j++) {
                 drawLine(n - j, '.');
