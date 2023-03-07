@@ -1,3 +1,7 @@
+package Lab1;
+
+import Lab1.Document;
+
 import java.util.Scanner;
 
 public class Main {
