@@ -1,13 +1,14 @@
 package Lab1;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Document {
     public static void loadDocument(String name, Scanner scan) {
         String line = "";
-        List<String> list = new ArrayList<>();
+        List<String> list = new LinkedList<>();
 
         while (!line.equals("eod")) {
             line = scan.nextLine();
