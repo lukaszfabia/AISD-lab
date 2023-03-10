@@ -1,14 +1,6 @@
 package Lab1;
 
 public class Drawer {
-    public static void main(String[] args) {
-        drawSq(2);
-        drawSq(5);
-        System.out.println();
-        drawChristmassTree(4);
-        System.out.println();
-        drawPyramid(4);
-    }
     private static void drawLine(int n, char ch) {
         for (int i = 1; i <= n; i++) {
             System.out.print(ch);
