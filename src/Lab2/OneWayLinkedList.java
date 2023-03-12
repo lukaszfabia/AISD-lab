@@ -19,7 +19,7 @@ public class OneWayLinkedList<E> implements IList<E> {
     Element sentinel;
 
     private class InnerIterator implements Iterator<E> {
-        private Element actual;
+        Element actual;
 
         public InnerIterator() {
             actual = sentinel.next;
@@ -27,7 +27,7 @@ public class OneWayLinkedList<E> implements IList<E> {
 
         @Override
         public boolean hasNext() {
-            return sentinel != null;
+            return actual != null;
         }
 
         @Override
@@ -35,8 +35,8 @@ public class OneWayLinkedList<E> implements IList<E> {
             if (!hasNext()) {
                 throw new NoSuchElementException("No more elements to show");
             }
-            E object = sentinel.object;
-            actual = sentinel.next;
+            E object = actual.object;
+            actual = actual.next;
             return object;
         }
     }
@@ -60,8 +60,12 @@ public class OneWayLinkedList<E> implements IList<E> {
     @Override
     public boolean add(E e) {
         Element newElement = new Element(e);
-        newElement.next = sentinel.next;
-        sentinel.next = newElement;
+        Element current = sentinel;
+        while (current.next != null) {
+            current = current.next;
+        }
+        current.next = newElement;
+        size++;
         return true;
     }
 
@@ -153,13 +157,30 @@ public class OneWayLinkedList<E> implements IList<E> {
         if (index >= size || index < 0) {
             throw new NoSuchElementException("Wrong index");
         }
-        //TODO
-        return null;
+        Element current = sentinel;
+
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        E elementToRemove = current.next.object;
+        current.next = current.next.next;
+        size--;
+        return elementToRemove;
     }
 
     @Override
     public boolean remove(E e) {
-        // TODO Auto-generated method stub
+        Element current = sentinel.next;
+        Element previous = sentinel;
+        while (current != null) {
+            if (current.object.equals(e)) {
+                previous.next = current.next;
+                size--;
+                return true;
+            }
+            previous = current;
+            current = current.next;
+        }
         return false;
     }
 

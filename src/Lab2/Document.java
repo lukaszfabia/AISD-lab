@@ -25,20 +25,19 @@ public class Document {
                 }
             }
         }
-
-        for (Link s : links) {
-            System.out.println(s);
-        }
     }
-
-    // accepted only small letters, capitalic letter, digits nad '_' (but not on the begin)
     private static boolean correctLink(String link) {
         return link.matches("link=[a-zA-Z][a-zA-Z0-9_]*");
     }
 
     @Override
     public String toString() {
-        return "Document: " + name;
+        StringBuilder builder = new StringBuilder();
+        builder.append("Document: ").append(name);
+        for (Link link : links) {
+            builder.append("\n").append(link);
+        }
+        return builder.toString();
     }
 
 }

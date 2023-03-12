@@ -5,5 +5,22 @@ public class Link{
     public Link(String ref) {
         this.ref=ref;
     }
-    // in the future there will be more fields
+
+    @Override
+    public String toString() {
+        return ref;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj==this){
+            return true;
+        }
+
+        if (!(obj instanceof Link ohterLink)){
+            return false;
+        }
+
+        return this.ref.equals(ohterLink.ref);
+    }
 }
