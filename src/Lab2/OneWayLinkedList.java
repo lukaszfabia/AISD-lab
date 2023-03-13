@@ -93,8 +93,8 @@ public class OneWayLinkedList<E> implements IList<E> {
 
     @Override
     public boolean contains(E element) {
-        for (Element current = sentinel.next; current != null; current = current.next) {
-            if (current.object.equals(element)) {
+        for (E e: this){
+            if (e.equals(element)){
                 return true;
             }
         }
@@ -137,9 +137,8 @@ public class OneWayLinkedList<E> implements IList<E> {
     @Override
     public int indexOf(E element) {
         int ind = 0;
-
-        for (Element current = sentinel.next; current != null; current = current.next) {
-            if (current.object.equals(element)) {
+        for (E e : this) {
+            if (e.equals(element)) {
                 return ind;
             }
             ind++;
@@ -149,7 +148,7 @@ public class OneWayLinkedList<E> implements IList<E> {
 
     @Override
     public boolean isEmpty() {
-        return size == 0;
+        return sentinel.next==null;
     }
 
     @Override

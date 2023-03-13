@@ -1,9 +1,10 @@
 package Lab2;
 
-public class Link{
+public class Link {
     public String ref;
+
     public Link(String ref) {
-        this.ref=ref;
+        this.ref = ref;
     }
 
     @Override
@@ -12,15 +13,10 @@ public class Link{
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (obj==this){
-            return true;
-        }
-
-        if (!(obj instanceof Link ohterLink)){
+    public boolean equals(Object o) {
+        if (!(o instanceof Link link)) {
             return false;
         }
-
-        return this.ref.equals(ohterLink.ref);
+        return ref.equals(link.ref);
     }
 }
