@@ -14,9 +14,10 @@ public class Link {
 
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof Link link)) {
-            return false;
+        if (o instanceof Link) {
+            Link link = (Link) o;
+            return this.ref.equals(link.ref);
         }
-        return ref.equals(link.ref);
+        return false;
     }
 }

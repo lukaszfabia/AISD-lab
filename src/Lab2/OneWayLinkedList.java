@@ -71,13 +71,13 @@ public class OneWayLinkedList<E> implements IList<E> {
 
     @Override
     public void add(int index, E element) throws NoSuchElementException {
-        if (index >= size || index < 0) {
+        if (index > size || index < 0) {
             throw new NoSuchElementException("Wrong index");
         }
         Element newElement = new Element(element);
         Element current = sentinel;
 
-        for (int i = 0; i < size; i++) {
+        for (int i = 0; i < index; i++) {
             current = current.next;
         }
         newElement.next = current.next;
